@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<package name="book" namespace="/" extends="json-default">
+	<action name="index" class="com.zzy.action.BookAction" method="viewBookList">
+		<result name="success">/index.jsp</result>
+		<result name="error">/error.jsp</result>
+	</action>
+	<action name="viewBookDetail" class="com.zzy.action.BookAction" method="viewBookDetail">
+		<result name="success">/bookdetail.jsp</result>
+		<result name="error">/error.jsp</result>
+	</action>
+	<action name="searchByAuthor" class="com.zzy.action.BookAction" method="searchByAuthor">
+		<result name="success">/index.jsp</result>
+		<result name="none">/error.jsp</result>
+	</action>
+	<action name="addBook" class="com.zzy.action.BookAction" method="addBook">
+		<result name="success">/index.jsp</result>
+		<result name="error">/error.jsp</result>
+	</action>
+	<action name="deleteBook" class="com.zzy.action.BookAction" method="deleteBook">
+		<result name="success" type="json"></result>
+		<result name="error">/error.jsp</result>
+	</action>
+</package>
+
+</struts>    
