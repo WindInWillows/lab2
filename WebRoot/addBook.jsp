@@ -45,13 +45,42 @@
 			      <input type="text" class="form-control" name="book.publishDate" placeholder="PublishDate">
 			    </div>
 			  </div>
+			  <div class="form-group">
+			    <label for="inputPrice" class="col-sm-2 control-label">价格</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="book.price" placeholder="Price">
+			    </div>
+			  </div>			  
 		  	</form>
 		  	</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" >重置</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">提交</button>
+        <button id="btn-submit" type="button" class="btn btn-primary" data-dismiss="modal">提交</button>
       </div>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#btn-submit").click(function(){
+			if(validateAuthor(name)) {
+				$.post();
+			}
+			else {
+				append(obj);
+			}
+		});
+	});
+	
+	var validateAuthor = function(name) {
+		$.post(
+					
+		);
+	};
+	
+	var validateInput = function(input) {
+		
+	};
+</script>

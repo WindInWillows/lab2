@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>  
   
   <body>
-<div class="container">
+<div class="container" style="width:60%; margin-top:20px">
 <%@ include file="booklist.jsp" %>
 
 <%@ include file="addBook.jsp" %>
