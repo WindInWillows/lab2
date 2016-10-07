@@ -171,7 +171,8 @@
 	});
 
 	var validateInput = function(input) {
-		
+		if($("#inputISBN").val() == "") return false;
+		if($("#inputTitle").val() == "") return false;
 	};
 </script>
 
