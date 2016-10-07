@@ -39,17 +39,17 @@
    		$("span[name='ico-del']").click(function(){
    			var isbn = $(this).parent("td").prev().prev().prev().children("span").text();
    			var obj = $(this);
-   			$.post("deleteBook",
-				{
-					bookisbn : isbn,
-				},
-				function(data,status){
+			$.ajax({
+				url:"deleteBook",
+				type:"post",
+				data:{bookisbn:isbn},
+				success:function(data, status){
 					if(status == "success"){
 						obj.parent().parent().remove();
 						$("#del-alert").show();
 					}
 				}
-			);
+			});
    		});
    		
    		$("span[name='ico-detail']").click(function() {

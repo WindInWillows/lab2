@@ -1,11 +1,16 @@
 package com.zzy.action;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.sun.jmx.snmp.agent.SnmpUserDataFactory;
 import com.zzy.bean.Author;
 import com.zzy.bean.Book;
 import com.zzy.bean.BookDetail;
+import com.zzy.bean.Status;
 import com.zzy.dao.BookDAO;
 
 public class BookAction extends ActionSupport{
@@ -17,6 +22,15 @@ public class BookAction extends ActionSupport{
 	private BookDAO bookDao = new BookDAO();
 	private Author author = new Author();
 	private String bookisbn = "";
+	private InputStream inputStream;
+
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
+	}
 
 	public String getBookisbn() {
 		return bookisbn;
@@ -59,10 +73,34 @@ public class BookAction extends ActionSupport{
 	}
 
 	public String addBook(){
-		boolean ans = bookDao.addAuthorAndBook(author, book); 
-		return ans ? SUCCESS : ERROR;
+		Status ans = bookDao.addBook(book); 
+		return SUCCESS;
 	}
-
+	
+	public String addAuthorAndBook() {
+		Status ans = bookDao.addAuthorAndBook(author, book);
+		return SUCCESS;
+	}
+	
+	public String validateAuthor() {
+		String ans = bookDao.getAuthorID(book.getAuthor());
+		if(ans == null){
+			try {
+				inputStream = new ByteArrayInputStream("".getBytes("utf-8"));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
+		else {
+			try {
+				inputStream = new ByteArrayInputStream(ans.getBytes("utf-8"));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
+		return SUCCESS;
+	}
+	
 	public String deleteBook() {
 		boolean ans = bookDao.deleteBook(bookisbn);
 		return ans ? SUCCESS : ERROR;

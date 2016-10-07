@@ -7,6 +7,7 @@ import java.util.List;
 import com.zzy.bean.Author;
 import com.zzy.bean.Book;
 import com.zzy.bean.BookDetail;
+import com.zzy.bean.Status;
 
 public class BookDAO {
 	private DBConnection DBCon = new DBConnection();
@@ -15,9 +16,9 @@ public class BookDAO {
 	private final String TABLE_BOOK = "Book";
 	private final String TABLE_AUTHOR = "Author";
 	
-	private boolean addBook(Book book) {
+	public Status addBook(Book book) {
 		if(book == null)
-			return false;
+			return Status.BOOK_IS_NULL;
 		String sql = "insert into "+TABLE_BOOK+" values('"+
 			book.getISBN()			+"','"+
 			book.getTitle()			+"','"+
@@ -27,30 +28,39 @@ public class BookDAO {
 			book.getPrice()			+"'"+
 		")";
 		DBCon.execSql(sql);
-		return true;
+		return Status.ADD_BOOK_SUCCESS;
 	}
 	
-	private boolean addAuthor(Author author) {
-		if(author == null) return false;
-		String sql = "insert into " + TABLE_AUTHOR + " values('"+
-				author.getAuthorId()	+"','"+
+	private Status addAuthor(Author author) {
+		if(author == null) return Status.AUTHOR_IS_NULL;
+		String sql = "insert into " + TABLE_AUTHOR + " values(NULL,'"+
 				author.getName()		+"','"+
 				author.getAge()			+"','"+
 				author.getCountry()		+"'"+
 			")";
 		DBCon.execSql(sql);
-		return true;
+		return Status.ADD_AUTHOR_SUCCESS;
 	}
 	
-	public boolean addAuthorAndBook(Author author, Book book) {
+	public Status addAuthorAndBook(Author author, Book book) {
 		if(book == null) 
-			return false;
-		if(existAuthor(book.getAuthor()))
-			return addBook(book);
+			return Status.BOOK_IS_NULL;
 		else {
-			if(author == null) return false; 
-			if(!addAuthor(author)) return false;
-			return addBook(book);
+			if(author == null) return Status.AUTHOR_IS_NULL; 
+			addAuthor(author);
+			String sql = "select AuthorID from author where name='"+author.getName()+"'";
+			res = DBCon.select(sql);
+			String AuthorID = "";
+			try {
+				if(res.next()){
+					AuthorID = res.getString(Author.AUTHORID_STR);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			book.setAuthorID(AuthorID);
+			addBook(book);
+			return Status.ADD_AUTHOR_AND_BOOK_SUCESS;
 		}
 	}
 	
@@ -114,14 +124,16 @@ public class BookDAO {
 		return list;
 	}
 
-	private boolean existAuthor(String author) {
-		String sql = "select * from " + TABLE_AUTHOR + " where Name = " + author;
+	public String getAuthorID(String author) {
+		String sql = "select * from " + TABLE_AUTHOR + " where Name = '" + author +"';";
 		res = DBCon.select(sql);
 		try {
-			return res.next();
+			if(res.next()){
+				return res.getString(Author.AUTHORID_STR);
+			} else return null;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
+			return null;
 		}
 	}
 
