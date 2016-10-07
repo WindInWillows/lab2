@@ -14,7 +14,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" href="dist/css/bootstrap-theme.min.css">
 <script src="dist/js/jquery-3.1.1.min.js"></script>
 <script src="dist/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="static/css/styles.css">
     <title>书城</title>
   </head>  
   

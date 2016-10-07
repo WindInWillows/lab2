@@ -1,5 +1,6 @@
 
   <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+    
     <div class="modal fade" id="addBookModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -58,9 +59,10 @@
 		  <div class="form-group">
 		    <label for="inputDate" class="col-sm-2 control-label">出版日期</label>
 		    <div class="col-sm-10">
-		      <input type="text" id="inputDate" class="form-control" name="book.publishDate" placeholder="PublishDate:xxxx-xx-xx">
-		    </div>
+		    	<input type="text" id="inputDate" class="form-control" name="book.publishDate" readonly="readonly">
+			</div>
 		  </div>
+		  
 		  <div class="form-group">
 		    <label for="inputPrice" class="col-sm-2 control-label">价格</label>
 		    <div class="col-sm-10">
@@ -85,6 +87,18 @@
 </div>
 
 <script type="text/javascript">
+    $(function () {
+        $("#inputDate").datepicker({
+            language: "zh-CN",
+            autoclose: true,//选中之后自动隐藏日期选择框
+            todayBtn: "linked",//今日按钮
+            format: "yyyy-mm-dd"//日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+        });
+    });
+</script>
+
+<script type="text/javascript">
+
 	var validateAuthor = function(name) {
 		var flag = "";
 		$.ajax({
@@ -102,6 +116,7 @@
 	};
 
 	$(document).ready(function(){
+
 		$("#inputAuthorName").blur(function(){
 			var name = $("#inputAuthorName").val();	
 			var author_id = validateAuthor(name);
@@ -111,7 +126,6 @@
 				$("#inputAuthorAge").focus();
 			}
 		});
-		
 		$("#btn-submit").click(function(){
 			var name = $("#inputAuthorName").val();
 			var author_id = validateAuthor(name);
@@ -145,16 +159,26 @@
 			}
 		});
 		$("#btn-reset").click(function(){
-			
-			//$("#addBookModal").modal('hide');
-		}
-				
-		);
+			$("#inputISBN").val("");
+			$("#inputTitle").val("");
+			$("#inputPublisher").val("");
+			$("#inputDate").val("");
+			$("#inputPrice").val("");
+			$("#inputAuthorAge").val("");
+			$("#inputAuthorCountry").val("");
+			$("#inputAuthorName").val("");
+		});
 	});
-	
 
-	
 	var validateInput = function(input) {
 		
 	};
 </script>
+
+<script type="text/javascript">
+
+</script> 
+
+<link href="dist/css/bootstrap-datepicker.min.css" rel="stylesheet" media="screen">
+<script type="text/javascript" src="dist/js/bootstrap-datepicker.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="dist/js/locales/bootstrap-datepicker.zh-CN.min.js" charset="UTF-8"></script>
