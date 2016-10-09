@@ -5,11 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.sun.org.apache.xalan.internal.xsltc.runtime.Parameter;
+
 public class DBConnection {
 	private static final String dbName = "bookdb";
 	private static final String user = "SE";
 	private static final String password = "999";
-	private static final String url  = "jdbc:mysql://localhost:3306/" + dbName;
+	private static final String parameter = "?useUnicode=true&characterEncoding=utf8";
+	private static final String url  = "jdbc:mysql://localhost:3306/" + dbName + parameter;
 	private static Statement stmt = null;
 	private static Connection con = null;
 	

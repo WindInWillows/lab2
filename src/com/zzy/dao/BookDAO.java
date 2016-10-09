@@ -27,7 +27,8 @@ public class BookDAO {
 			book.getPublishDate()	+"','"+
 			book.getPrice()			+"'"+
 		")";
-		DBCon.execSql(sql);
+		DBCon.execSql("SET NAMES UTF8");
+		DBCon.execSql(sql); 
 		return Status.ADD_BOOK_SUCCESS;
 	}
 	
@@ -38,6 +39,7 @@ public class BookDAO {
 				author.getAge()			+"','"+
 				author.getCountry()		+"'"+
 			")";
+		DBCon.execSql("SET NAMES UTF8");
 		DBCon.execSql(sql);
 		return Status.ADD_AUTHOR_SUCCESS;
 	}
