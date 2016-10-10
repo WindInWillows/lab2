@@ -8,9 +8,9 @@ public class Author {
 	private String age;
 	
 	public static final String AUTHORID_STR = "AuthorID";
-	public static final String NAME_STR = "name";
-	public static final String AGE_STR = "age";
-	public static final String COUNTRY_STR = "country";
+	public static final String NAME_STR = "Name";
+	public static final String AGE_STR = "Age";
+	public static final String COUNTRY_STR = "Country";
 	
 	public String getAuthorId() {
 		return AuthorId;

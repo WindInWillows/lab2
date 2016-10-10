@@ -1,22 +1,23 @@
 package com.zzy.dao;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Parameter;
-
 public class DBConnection {
-	private static final String dbName = "bookdb";
-	private static final String user = "SE";
-	private static final String password = "999";
-	private static final String parameter = "?useUnicode=true&characterEncoding=utf8";
-	private static final String url  = "jdbc:mysql://localhost:3306/" + dbName + parameter;
+	private static String dbName = "bookdb";
+	private static String user = "tendernesszzy";
+	private static String password = "994599";
+	private static String parameter = "?characterEncoding=utf8";
+	private static String dburl = "jdbc:mysql://pnrorvepeufu.rds.sae.sina.com.cn:10579/";
+//	private static String url  = dburl + dbName + parameter;
+	private static String url  = dburl + dbName ;
 	private static Statement stmt = null;
 	private static Connection con = null;
 	
-	static {
+	public DBConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection(url, user, password);
@@ -26,17 +27,22 @@ public class DBConnection {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
+	} 
 	
 	public Connection getConnection() {
 		return con;
 	}
 	
 	public ResultSet select(String sql) {
+		System.out.println("DBConnection.select()");
 		ResultSet rs = null;
 		try {
 			 rs = stmt.executeQuery(sql);
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			System.out.println(sql);
+			e.printStackTrace();
+		}
+		System.out.println(rs==null);
 		return rs;
 	}
 	

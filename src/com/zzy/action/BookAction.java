@@ -107,6 +107,7 @@ public class BookAction extends ActionSupport{
 	}
 	
 	public String viewBookList() {
+		System.out.println("BookAction.viewBookList()");
 		list = bookDao.viewBookList();
 		return list == null ? ERROR : SUCCESS;
 	}

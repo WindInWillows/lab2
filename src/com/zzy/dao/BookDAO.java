@@ -13,8 +13,8 @@ public class BookDAO {
 	private DBConnection DBCon = new DBConnection();
 	private List<Book> list = null;
 	private ResultSet res = null;
-	private final String TABLE_BOOK = "Book";
-	private final String TABLE_AUTHOR = "Author";
+	private final String TABLE_BOOK = "book";
+	private final String TABLE_AUTHOR = "author";
 	
 	public Status addBook(Book book) {
 		if(book == null)
@@ -96,8 +96,10 @@ public class BookDAO {
 			book.setPublisher(res.getString(Book.PUBLISHER_STR));
 			book.setTitle(res.getString(Book.TITLE_STR));
 		} catch (Exception e) {
+			System.out.println("set book error");
 			return null;
 		}
+		System.out.println(book.getAuthor());
 		return book;
 	}
 
@@ -162,11 +164,13 @@ public class BookDAO {
 	}
 
 	public List<Book> viewBookList() {
+		System.out.println("BookDAO.viewBookList()");
 		list = new ArrayList<Book>();
 		String sql = "select * from " + TABLE_BOOK;
 		res = DBCon.select(sql);
 		try {
 			while(res.next()) {
+				System.out.println("has result");
 				Book book = getBookFromResset();
 				list.add(book);
 			}

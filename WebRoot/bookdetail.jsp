@@ -5,11 +5,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-<link rel="stylesheet" href="dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="dist/css/bootstrap-theme.min.css">
-<script src="dist/js/jquery-3.1.1.min.js"></script>
-<script src="dist/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="static/css/styles.css">
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    
     <title>查看详细信息</title>
   </head>  
     

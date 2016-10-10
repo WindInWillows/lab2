@@ -175,11 +175,3 @@
 		if($("#inputTitle").val() == "") return false;
 	};
 </script>
-
-<script type="text/javascript">
-
-</script> 
-
-<link href="dist/css/bootstrap-datepicker.min.css" rel="stylesheet" media="screen">
-<script type="text/javascript" src="dist/js/bootstrap-datepicker.min.js" charset="UTF-8"></script>
-<script type="text/javascript" src="dist/js/locales/bootstrap-datepicker.zh-CN.min.js" charset="UTF-8"></script>
