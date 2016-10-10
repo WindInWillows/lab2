@@ -12,7 +12,7 @@
         <td>书名</td>
         <td>查看详情</td>
         <td>删除</td>
-        <td>修改</td>
+       
      </tr>
      </thead>
      <tbody>
@@ -22,7 +22,6 @@
         <td><span data-toggle="tooltip" data-placement="left" title="查看图书"><s:property value="title"/></span></td>
         <td><span name="ico-detail" class="glyphicon glyphicon-zoom-in" data-toggle="tooltip" data-placement="left" title="查看图书"></span></td>
         <td><span name="ico-del" class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="left" title="删除图书"></span></td>
-        <td><span class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="left" title="编辑图书"> </span></td>
      </tr>
    </s:iterator>
    </tbody>
